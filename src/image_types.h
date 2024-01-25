@@ -21,6 +21,9 @@ extern "C" {
  * Definitions
  *****************************************************************************/
 
+#define MICROBOOT_IMAGE_HEADER_MAGIC 0xE5B0074EU
+#define MICROBOOT_IMAGE_FOOTER_MAGIC 0xE5B007F0U
+
 /*****************************************************************************
  * Structs, Unions, Enums, & Typedefs
  *****************************************************************************/
@@ -43,7 +46,7 @@ typedef struct image_header_t {
  */
 typedef struct image_footer_t {
     uint32_t magic;
-} typedef_footer_t;
+} image_footer_t;
 
 /**
  * @brief Image typedef
@@ -51,10 +54,9 @@ typedef struct image_footer_t {
  */
 typedef struct image_t {
     image_header_t header;
-    uint32_t pc;
-    uint32_t sp;
+    uint32_t *image_start;
     image_footer_t footer;
-} image_footer_t;
+} image_t;
 
 /*****************************************************************************
  * Function Prototypes
