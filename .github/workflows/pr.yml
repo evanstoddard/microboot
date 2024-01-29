@@ -1,0 +1,44 @@
+name: PR
+on:
+    pull_request:
+      types:
+        - opened
+jobs:
+  build:
+    permissions: 
+      pull-requests: write 
+      repository-projects: read
+      contents: read
+    runs-on: ubuntu-latest
+    container:
+      image: evanovyl/arm-none-eabi-ci-cd
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/ci/build.sh
+  test:
+    permissions: 
+      pull-requests: write 
+      repository-projects: read
+      contents: read
+    runs-on: ubuntu-latest
+    container:
+      image: evanovyl/arm-none-eabi-ci-cd
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/ci/run_tests.sh
+  analysis:
+    permissions: 
+      pull-requests: write 
+      repository-projects: read
+      contents: read
+    runs-on: ubuntu-latest
+    container:
+      image: evanovyl/arm-none-eabi-ci-cd
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/ci/analysis.sh
+      - name: Analysis Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: ./build/analysis/analysis.md
+          comment_tag: analysis
