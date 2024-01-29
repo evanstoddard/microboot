@@ -57,10 +57,6 @@ void test_image_loader_get_image_header(void) {
     // Assertions
 }
 
-/**
- * @brief 
- * 
- */
 void test_image_loader_get_image_footer(void) {
     // Setup and Expectations
     image_t image;

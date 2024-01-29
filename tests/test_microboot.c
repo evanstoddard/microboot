@@ -174,6 +174,10 @@ void test_microboot_boot_success(void) {
     TEST_ASSERT_TRUE(ret);
 }
 
+/**
+ * @brief Test when no partitions exist
+ * 
+ */
 void test_microboot_get_primary_partition_no_partitions(void) {
     // Setup and Expectations
     flash_partition_t empty_partitions[] = {};
@@ -186,6 +190,10 @@ void test_microboot_get_primary_partition_no_partitions(void) {
     TEST_ASSERT_EQUAL(ret, NULL);
 }
 
+/**
+ * @brief Test when no primary partitions exist.
+ * 
+ */
 void test_microboot_get_primary_partition_no_primary_partiton(void) {
     // Setup and Expectations
     flash_partition_t no_primary_partitions[] = {
@@ -209,6 +217,10 @@ void test_microboot_get_primary_partition_no_primary_partiton(void) {
     TEST_ASSERT_EQUAL(ret, NULL);
 }
 
+/**
+ * @brief Test when successfully able to get primary partition
+ * 
+ */
 void test_microboot_get_primary_partition_success(void) {
     // Setup and Expectations
 
@@ -219,6 +231,10 @@ void test_microboot_get_primary_partition_success(void) {
     TEST_ASSERT_EQUAL(ret, &partitions[1]);
 }
 
+/**
+ * @brief Test when no partitions exist
+ * 
+ */
 void test_microboot_get_secondary_partition_no_partitions(void) {
     // Setup and Expectations
     flash_partition_t empty_partitions[] = {};
@@ -231,6 +247,10 @@ void test_microboot_get_secondary_partition_no_partitions(void) {
     TEST_ASSERT_EQUAL(ret, NULL);
 }
 
+/**
+ * @brief Test when no secondary partitions exist
+ * 
+ */
 void test_microboot_get_secondary_partition_no_secondary_partiton(void) {
     // Setup and Expectations
     flash_partition_t no_secondary_partitions[] = {
@@ -254,6 +274,10 @@ void test_microboot_get_secondary_partition_no_secondary_partiton(void) {
     TEST_ASSERT_EQUAL(ret, NULL);
 }
 
+/**
+ * @brief Test when successfully able to get secondary partition
+ * 
+ */
 void test_microboot_get_secondary_partition_success(void) {
     // Setup and Expectations
 
