@@ -32,10 +32,24 @@ extern "C" {
  *****************************************************************************/
 
 /**
- * @brief Attempt to load image info from partition
+ * @brief Attempt to get image at partition
  * 
+ * @param partition Image Partition
+ * @param image Pointer to image struct to write image info to
+ * @return true Able to find image at partition
+ * @return false Unable to find image at partition
  */
 bool image_loader_get_image_info(flash_partition_t *partition, image_t *image);
+
+/**
+ * @brief Check if image at partition is valid
+ * 
+ * @param partition Image partition
+ * @param image Image struct
+ * @return true Image is valid
+ * @return false Image in not valid
+ */
+bool image_loader_validate_image(flash_partition_t *partition, image_t *image);
 
 #ifdef __cplusplus
 }

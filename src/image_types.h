@@ -46,6 +46,7 @@ typedef struct image_header_t {
  */
 typedef struct image_footer_t {
     uint32_t magic;
+    uint32_t crc;
 } image_footer_t;
 
 /**
