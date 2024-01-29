@@ -55,7 +55,7 @@ static flash_partition_t* microboot_get_primary_partition(void);
  * 
  * @return flash_partition_t* 
  */
-static flash_partition_t* microboot_get_primary_partition(void);
+static flash_partition_t* microboot_get_secondary_partition(void);
 
 /*****************************************************************************
  * Functions
@@ -77,7 +77,9 @@ bool microboot_boot(image_t *image) {
     if (!image_loader_get_image_info(primary_partition, image))
         return false;
 
-    return true;
+
+    // Return whether primary partition has a valid image
+    return image_loader_validate_image(primary_partition, primary_partition);
 }
 
 flash_partition_t* microboot_get_primary_partition(void) {
