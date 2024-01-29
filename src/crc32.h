@@ -34,7 +34,7 @@ extern "C" {
  * @brief Returns CRC32 value of given buffer
  * 
  */
-uint32_t crc32(const void *buf, size_t size)
+uint32_t crc32(const void *buf, size_t size);
 
 #ifdef __cplusplus
 }
