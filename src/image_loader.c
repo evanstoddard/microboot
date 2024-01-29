@@ -30,7 +30,7 @@
  * @param partition Partition
  * @param image Image to read data into
  */
-void image_loader_get_image_header(flash_partition_t *partition, image_t *image);
+static void image_loader_get_image_header(flash_partition_t *partition, image_t *image);
 
 /**
  * @brief Get image footer from partition
@@ -38,7 +38,7 @@ void image_loader_get_image_header(flash_partition_t *partition, image_t *image)
  * @param partition Partition
  * @param image Image to read data into
  */
-void image_loader_get_image_footer(flash_partition_t *partition, image_t *image);
+static void image_loader_get_image_footer(flash_partition_t *partition, image_t *image);
 
 /*****************************************************************************
  * Functions
