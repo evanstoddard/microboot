@@ -141,15 +141,34 @@ void test_microboot_boot_bad_image_info(void) {
 }
 
 /**
+ * @brief Test if image validation fails
+ * 
+ */
+void test_microboot_boot_validation_failed(void) {
+    // Setup and Expectations
+    image_t image;
+    image_loader_get_image_info_IgnoreAndReturn(true);
+    image_loader_validate_image_IgnoreAndReturn(false);
+
+    // Test
+    bool ret = microboot_boot(NULL);
+
+    // Assertions
+    TEST_ASSERT_FALSE(ret);
+}
+
+/**
  * @brief Test a sucessful boot
  * 
  */
 void test_microboot_boot_success(void) {
     // Setup and Expectations
+    image_t image;
     image_loader_get_image_info_IgnoreAndReturn(true);
-    
+    image_loader_validate_image_IgnoreAndReturn(true);
+
     // Test
-    bool ret = microboot_boot(NULL);
+    bool ret = microboot_boot(&image);
 
     // Assertions
     TEST_ASSERT_TRUE(ret);
