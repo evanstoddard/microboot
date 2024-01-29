@@ -93,7 +93,7 @@ flash_partition_t* microboot_get_primary_partition(void) {
 flash_partition_t* microboot_get_secondary_partition(void) {
     // Iterate through partitions and return if found
     for (uint8_t i = 0; i < microboot_inst.num_parts; i++) {
-        if (microboot_inst.flash_parts[i].type == FLASH_PARTITION_SLOT_PRIMARY)
+        if (microboot_inst.flash_parts[i].type == FLASH_PARTITION_SLOT_SECONDARY)
             return &microboot_inst.flash_parts[i];
     }
 
