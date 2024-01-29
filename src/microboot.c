@@ -79,7 +79,7 @@ bool microboot_boot(image_t *image) {
 
 
     // Return whether primary partition has a valid image
-    return image_loader_validate_image(primary_partition, primary_partition);
+    return image_loader_validate_image(primary_partition, image);
 }
 
 flash_partition_t* microboot_get_primary_partition(void) {
