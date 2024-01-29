@@ -12,10 +12,7 @@
 #include "image_loader.h"
 #include "image_loader.c"
 #include "mock_flash_interface.h"
-<<<<<<< HEAD
-=======
 #include "mock_crc32.h"
->>>>>>> a11fde9 (Added crc validation testcases for image loader)
 
 /*****************************************************************************
  * Definitions
