@@ -44,7 +44,7 @@ void flash_interface_flash_erase(uint32_t addr, uint32_t size);
  * @param dst Pointer of destination
  * @param size Size in bytes
  */
-void flash_interface_flash_read(uint32_t addr, uint8_t *dst, uint32_t size);
+void flash_interface_flash_read(uint32_t addr, void *dst, uint32_t size);
 
 /**
  * @brief Write data to flash
@@ -53,7 +53,7 @@ void flash_interface_flash_read(uint32_t addr, uint8_t *dst, uint32_t size);
  * @param src Source buffer
  * @param size Size of buffer (must be aligned to power of 2)
  */
-void flash_interface_flash_write(uint32_t addr, uint8_t *src, uint32_t size);
+void flash_interface_flash_write(uint32_t addr, void *src, uint32_t size);
 
 #ifdef __cplusplus
 }
