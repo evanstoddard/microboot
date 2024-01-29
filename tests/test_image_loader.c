@@ -12,6 +12,10 @@
 #include "image_loader.h"
 #include "image_loader.c"
 #include "mock_flash_interface.h"
+<<<<<<< HEAD
+=======
+#include "mock_crc32.h"
+>>>>>>> a11fde9 (Added crc validation testcases for image loader)
 
 /*****************************************************************************
  * Definitions
@@ -78,6 +82,74 @@ void test_image_loader_get_image_footer(void) {
     // Assertions
 }
 
+void test_image_loader_validate_image_crc_no_partition(void) {
+    // Setup and Expectations
+    image_t image;
+    
+    flash_partition_t partition = {
+        .addr = 0xCAFED00D
+    };
+
+    // Test
+    bool ret = image_loader_validate_image_crc(NULL, &image);
+
+    // Assertions
+    TEST_ASSERT_FALSE(ret);
+}
+
+void test_image_loader_validate_image_crc_no_image(void) {
+    // Setup and Expectations
+    image_t image;
+    
+    flash_partition_t partition = {
+        .addr = 0xCAFED00D
+    };
+
+    // Test
+    bool ret = image_loader_validate_image_crc(&partition, NULL);
+
+    // Assertions
+    TEST_ASSERT_FALSE(ret);
+}
+
+void test_image_loader_validate_image_crc_bad_crc(void) {
+    // Setup and Expectations
+    image_t image;
+    image.image_start = (uint32_t*)0x4242;
+    image.header.image_size = 0x1000;
+    
+    flash_partition_t partition = {
+        .addr = 0xCAFED00D
+    };
+
+    crc32_ExpectAndReturn((void *)image.image_start, image.header.image_size, false);
+
+    // Test
+    bool ret = image_loader_validate_image_crc(&partition, &image);
+
+    // Assertions
+    TEST_ASSERT_FALSE(ret);
+}
+
+void test_image_loader_validate_image_crc_success(void) {
+    // Setup and Expectations
+    image_t image;
+    image.image_start = (uint32_t*)0x4242;
+    image.header.image_size = 0x1000;
+    
+    flash_partition_t partition = {
+        .addr = 0xCAFED00D
+    };
+
+    crc32_ExpectAndReturn((void *)image.image_start, image.header.image_size, true);
+
+    // Test
+    bool ret = image_loader_validate_image_crc(&partition, &image);
+
+    // Assertions
+    TEST_ASSERT_FALSE(ret);
+}
+
 void test_image_loader_get_image_info_no_image(void) {
     // Setup and Expectations
     flash_partition_t partition = {
@@ -117,7 +189,7 @@ void test_image_loader_get_image_info_bad_image_size(void) {
     };
 
     image_t image;
-    image.header.magic = 0xBADBEEF;
+    image.header.magic = MICROBOOT_IMAGE_HEADER_MAGIC;
     image.header.image_size = 0x4200;
 
     flash_interface_flash_read_Expect(partition.addr, &image.header, sizeof(image_header_t));
@@ -182,3 +254,4 @@ void test_image_loader_get_image_info_success(void) {
     // Assertions
     TEST_ASSERT_TRUE(ret);
 }
+
