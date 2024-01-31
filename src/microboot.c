@@ -77,7 +77,8 @@ bool microboot_boot(image_t *image) {
     if (!image_loader_get_image_info(primary_partition, image))
         return false;
 
-
+    image_loader_validate_image(primary_partition, image);
+    
     // Return whether primary partition has a valid image
     return image_loader_validate_image(primary_partition, image);
 }

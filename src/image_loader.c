@@ -90,7 +90,8 @@ bool image_loader_get_image_info(flash_partition_t *partition, image_t *image) {
 }
 
 bool image_loader_validate_image(flash_partition_t *partition, image_t *image) {
-
+    // Validate image CRC
+    return image_loader_validate_image_crc(partition, image);
 }
 
 void image_loader_get_image_header(flash_partition_t *partition, image_t *image) {
