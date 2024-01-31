@@ -38,7 +38,7 @@ typedef struct image_header_t {
     uint16_t version_major;
     uint16_t version_minor;
     uint16_t version_patch;
-} image_header_t;
+} __attribute__ ((packed)) image_header_t;
 
 /**
  * @brief Image footer typedef
@@ -47,7 +47,7 @@ typedef struct image_header_t {
 typedef struct image_footer_t {
     uint32_t magic;
     uint32_t crc;
-} image_footer_t;
+} __attribute__ ((packed)) image_footer_t;
 
 /**
  * @brief Image typedef
